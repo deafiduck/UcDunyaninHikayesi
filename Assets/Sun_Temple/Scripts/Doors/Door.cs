@@ -12,7 +12,7 @@ namespace SunTemple
         public bool DoorClosed = true;
         public float OpenRotationAmount = 90;
         public float RotationSpeed = 1f;
-        public float MaxDistance = 3.0f;
+        public float MaxDistance = 100.0f;
 		public string playerTag = "Player";
 		private Collider DoorCollider;
 
@@ -74,7 +74,7 @@ namespace SunTemple
 					Rotate ();
 				}
 
-				if (Input.GetKeyDown (KeyCode.Mouse0)) {
+				if (Input.GetKeyDown (KeyCode.E)) {
 					TryToOpen ();
 				}
 
@@ -90,7 +90,9 @@ namespace SunTemple
 
 
 		void TryToOpen(){
-			if (Mathf.Abs(Vector3.Distance(transform.position, Player.transform.position)) <= MaxDistance){	
+			float distance = Mathf.Abs(Vector3.Distance(transform.position, Player.transform.position));
+			Debug.Log(distance);
+			if (distance <= MaxDistance){	
 
 				Ray ray = Cam.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0));
 				RaycastHit hit;
