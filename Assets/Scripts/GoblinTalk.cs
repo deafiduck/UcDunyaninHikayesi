@@ -42,7 +42,7 @@ public class GoblinTalk : MonoBehaviour
         {
             GoblinIdle();
         }
-        Debug.Log("Distance" + distance);
+       
     }
 
     private void GoblingTalking()
