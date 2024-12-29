@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SunTemple
-{
+
     public class CharController_Motor : MonoBehaviour
     {
         public float speed = 3.0f;
@@ -21,6 +20,9 @@ namespace SunTemple
         public float cameraHeight = 1.0f;    // Kamera yüksekliği
         public float rotationSpeed = 4.0f;   // Kameranın dönüş hızı
         public GameObject characterCamPos;
+        public float cameraVerticalAngleLimit = 70f; // Kamera yukarı ve aşağı hareket sınırı
+        private float currentCameraVerticalAngle = 0f; // Mevcut dikey açı
+        public bool walk, run, idle;
         void Start()
         {
             ChAnimation = GetComponent<CharacterControllerWAnimation>();  // Access the CharacterControllerWAnimation script
@@ -66,16 +68,25 @@ namespace SunTemple
                 {
                     ChAnimation.Run();  // Run if shift is held
                     speed = 5;
+                    run = true;
+                    walk = false;
+                    idle = false;
                 }
                 else
                 {
                     ChAnimation.walk();  // Walk otherwise
                     speed = 3;
+                    run = false;
+                    walk = true;
+                    idle = false;
                 }
             }
             else
             {
                 ChAnimation.Idle();  // Idle when not moving
+                run = false;
+                walk = false;
+                idle = true;
             }
 
             // Jump animation
@@ -101,12 +112,12 @@ namespace SunTemple
             {
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    CameraRotation(rotHorizontal);
+                    CameraRotation(rotHorizontal, rotVertical);
                 }
             }
             else
             {
-                CameraRotation(rotHorizontal);
+                CameraRotation(rotHorizontal, rotVertical);
             }
 
             // Kamerayı karaktere doğru yönlendir
@@ -114,10 +125,17 @@ namespace SunTemple
             cam.transform.LookAt(characterCamPos.transform.position + Vector3.up * 1f);  // Karakterin biraz üst kısmını hedef al
         }
 
-        void CameraRotation(float rotHorizontal)
+        void CameraRotation(float rotHorizontal, float rotVertical)
         {
-            // Karakterin etrafında döndürme
+            // Karakterin etrafında yatay döndürme (sağ/sol)
             transform.Rotate(0, rotHorizontal * Time.fixedDeltaTime, 0);
+
+            // Kamera için dikey dönüş (yukarı/aşağı)
+            currentCameraVerticalAngle -= rotVertical * Time.fixedDeltaTime;  // Yüksekliği azalt (aşağı)
+            currentCameraVerticalAngle = Mathf.Clamp(currentCameraVerticalAngle, -cameraVerticalAngleLimit, cameraVerticalAngleLimit);  // Sınırları uygula
+
+            // Kamerayı güncelle (yukarı/aşağı eğilme)
+            cam.transform.localRotation = Quaternion.Euler(currentCameraVerticalAngle, transform.eulerAngles.y, 0);
         }
     }
-}
+
