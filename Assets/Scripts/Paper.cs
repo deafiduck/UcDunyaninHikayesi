@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class Paper : MonoBehaviour
 {
-    public GameObject paperPanel;
-    public GameObject realBook;
-    private float theDistance;
-
-    private void Update()
+    public GameObject bookPanel;
+ 
+    private void OnTriggerEnter(Collider other)
     {
-        theDistance = PlayerRay.distanceFromTarget;
-
-        if(theDistance <= 1.5)
+        if (other.tag == "Player")
         {
-
-            if (Input.GetKey(KeyCode.G))
-            {
-               
-                paperPanel.SetActive(true);
-                realBook.SetActive(false);
-            }
+            bookPanel.SetActive(true);
         }
-        else
-        {
-         
-            paperPanel.SetActive(false);
-            realBook.SetActive(true);
-        }
-
-        Debug.Log("Distance: " + theDistance);
     }
-   
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            bookPanel.SetActive(false);
+        }
+    }
+
+  
 }
+
