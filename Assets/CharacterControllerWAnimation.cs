@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterControllerWAnimation : MonoBehaviour
 {
     public Animator anim;
-
+    public bool isAttack = false; //reis attack yapýyo mu kontrolü
     private void Start()
     {
         anim= GetComponent<Animator>();
@@ -17,6 +17,7 @@ public class CharacterControllerWAnimation : MonoBehaviour
         anim.SetBool("isIdle", false);
         anim.SetBool("isJump", false);
         anim.SetBool("isAttack", false);
+        isAttack = false;
     }
 
     public void Run()
@@ -25,7 +26,8 @@ public class CharacterControllerWAnimation : MonoBehaviour
         anim.SetBool("isWalk", false);
         anim.SetBool("isIdle", false);
         anim.SetBool("isJump", false);
-        anim.SetBool("isAttack", false);
+        anim.SetBool("isAttack", false); 
+        isAttack = false;
     }
 
     public void Idle()
@@ -35,6 +37,7 @@ public class CharacterControllerWAnimation : MonoBehaviour
         anim.SetBool("isIdle", true);
         anim.SetBool("isJump", false);
         anim.SetBool("isAttack", false);
+        isAttack = false;
     }
 
     public void Attack()
@@ -44,6 +47,7 @@ public class CharacterControllerWAnimation : MonoBehaviour
         anim.SetBool("isIdle", false);
         anim.SetBool("isJump", false);
         anim.SetBool("isAttack", true);
+        isAttack = true ;
     }
 
     public void Jump()
@@ -53,5 +57,6 @@ public class CharacterControllerWAnimation : MonoBehaviour
         anim.SetBool("isIdle", false);
         anim.SetBool("isJump", true);
         anim.SetBool("isAttack", false);
+        isAttack = false;
     }
 }
