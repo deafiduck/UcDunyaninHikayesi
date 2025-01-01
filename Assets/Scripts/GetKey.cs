@@ -7,6 +7,7 @@ public class GetKey : MonoBehaviour
     public float theDistance; //player'ýn anahtara olan uzaklýðý 
     public bool keyTaken; //anahtar alýndý mý alýnmadý mý
     public GameObject key;
+    public GameObject keyImage;
     public GameObject pointLight;
     public GameObject getKeyText; //E'ye bas yazýsý
     void Start()
@@ -37,6 +38,16 @@ public class GetKey : MonoBehaviour
         else
         {
             getKeyText.SetActive(false);
+        }
+
+
+        if (keyTaken)
+        {
+            keyImage.SetActive(true);
+        }
+        else
+        {
+            keyImage.SetActive(false);
         }
     }
 

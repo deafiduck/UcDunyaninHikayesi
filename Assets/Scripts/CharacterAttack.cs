@@ -1,26 +1,61 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
-    CharacterControllerWAnimation characterScript; //atak yapýp yapmadýðýna eriþilecek
-    public float damage = 20f;//vereceðimiz hasar
+    RaycastHit hit;
 
-    void Start()
+     int currentAmmo = 10000;  
+     int maxAmmo = 10000;
+
+    [SerializeField]
+    float weaponRange; //atÃ½Ã¾ mesafesi(ne kadar uzaÃ°a atÃ½Ã¾ yapabiliriz
+
+    [SerializeField]
+    float rateofFire;  
+    float nextFire = 0;
+
+    public Transform shootPoint;
+    public float damage = 10f;
+
+    private void Update()
     {
-        characterScript= GetComponent<CharacterControllerWAnimation>();
+        if (currentAmmo > 0 && Input.GetButton("Fire1")) 
+        {
+            Shoot();
+        }
+   
     }
 
-    
-    void Update()
+    void Shoot()
     {
-        if (Input.GetButton("Fire1")) 
+        if (Time.time > nextFire)
         {
-            
+            nextFire = Time.time + rateofFire;
+            currentAmmo--; 
+
+            ShootRay();
+        }
+
+    }
+
+    void ShootRay()
+    {
+
+        if (Physics.Raycast(shootPoint.position, shootPoint.forward, out hit, weaponRange)) 
+        {
+            if (hit.transform.tag == "Enemy")
+            {
+                GhostHealth enemy = hit.transform.GetComponent<GhostHealth>();
+                enemy.ReduceHealth(damage);
+            }
+  
+            else
+            {
+                Debug.Log("Something else");
+            }
         }
     }
 
-
-    
 }

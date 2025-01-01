@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hourse
+  - Enemy
   layers:
   - Default
   - TransparentFX
