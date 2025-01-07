@@ -18,7 +18,7 @@ public class GoblinTalk : MonoBehaviour
 
     public List<Dialogue> dialogues;  // Diyalog listesini tanýmla
     private bool isTalking = false;  // Coroutine'in çalýþtýðýný belirten bayrak
-    private bool dialogueCompleted = false;  // Diyaloglarýn tamamlandýðýný belirten bayrak
+    public bool dialogueCompleted = false;  // Diyaloglarýn tamamlandýðýný belirten bayrak
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class GoblinTalk : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance <= 5)
+        if (distance <= 12)
         {
             if (!isTalking && !dialogueCompleted)
             {
