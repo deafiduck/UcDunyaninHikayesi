@@ -7,23 +7,44 @@ public class MagicEffectScript : MonoBehaviour
     public GetKey getKey;
     public ParticleSystem particleEffect;
     public GameObject cylinder;
+    public static int completedCylinders = 0;  // Tüm silindirler için ortak sayaç
+    public ParticleSystem portal;  
 
-    void Start()
+    private bool isActivated = false;  // Tekrar tetiklenmeyi önlemek için
+    private void Start()
     {
         if (getKey == null)
         {
             getKey = FindObjectOfType<GetKey>();
         }
+        if (portal != null)
+        {
+            portal.Stop();  // Baþlangýçta portal kapalý
+        }
     }
 
-    private void OnTriggerEnter(Collider other) // OnCollision yerine OnTrigger kullan (Collider ayarlarýna baðlý)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && getKey != null && getKey.keyTaken)
+        if (other.CompareTag("Player") && getKey != null && getKey.keyTaken && !isActivated)
         {
-            Debug.Log("carptiiiii");
-            particleEffect.Play(); 
-            cylinder.SetActive(false);
-           
+            particleEffect.Play();  
+            cylinder.SetActive(false);  
+            isActivated = true;
+            completedCylinders++;
+
+            if (completedCylinders >= 4)  // Tüm silindirler tamamlandýysa
+            {
+                ActivatePortal();
+            }
+        }
+    }
+
+    void ActivatePortal()
+    {
+        if (portal != null)
+        {
+            portal.Play();  // Portalý etkinleþtir
+            Debug.Log("Portal Açýldý!");
         }
     }
 }

@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Hourse
   - Enemy
-  - Character
+  - Undefined
   layers:
   - Default
   - TransparentFX
