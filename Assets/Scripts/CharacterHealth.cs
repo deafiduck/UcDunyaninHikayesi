@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CharacterHealth : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class CharacterHealth : MonoBehaviour
     public static CharacterHealth CH;
     public bool isDead;
 
+    public Slider healthBarSlider;
+    public Text healthText;
     private void Awake()
     {
         CH = this;
+        healthBarSlider.value = maxHealth;
+        healthText.text = maxHealth.ToString();
     }
 
     void Start()
@@ -30,6 +35,7 @@ public class CharacterHealth : MonoBehaviour
             {
                 Dead();
             }
+
         }
     }
 
@@ -42,6 +48,12 @@ public class CharacterHealth : MonoBehaviour
             {
                 Dead();
             }
+            else
+            {
+                currentHealth -= damage;
+                healthBarSlider.value -= damage;
+                UpdateText();
+            }
         }
     }
 
@@ -51,5 +63,11 @@ public class CharacterHealth : MonoBehaviour
         isDead = true;
         Debug.Log("Game Over!");
         // Oyun bittiðinde yapýlacaklar burada
+    }
+
+
+    public void UpdateText()
+    {
+        healthText.text = currentHealth.ToString();
     }
 }
