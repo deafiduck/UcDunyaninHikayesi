@@ -10,7 +10,7 @@ public class HourseController : MonoBehaviour
     public HourseA HAnimation;
     public CharController_Motor CController;
     public GameObject Player;
-
+    public Rigidbody Rigidbody;
     private bool isRiding = false; // Oyuncunun ata binip binmediðini kontrol eder
 
     void Start()
@@ -20,7 +20,8 @@ public class HourseController : MonoBehaviour
         animator = GetComponent<Animator>();
 
             CController = Player.GetComponent<CharController_Motor>();
-          
+        
+          Rigidbody= GetComponent<Rigidbody>();
       
     }
 
@@ -36,12 +37,13 @@ public class HourseController : MonoBehaviour
         {
             if (CController != null && CController.walk == true)
             {
+                MoveHorse();
                 HAnimation.walk();
                 Debug.Log("E tuþuna basýldý. Oyuncu ata biniyor.");
                 Player.transform.position = transform.position;
                 Player.transform.rotation = Quaternion.identity;
-                Vector3 forwardMovement = transform.forward * speed * Time.fixedDeltaTime;
-                rb.MovePosition(rb.position + forwardMovement);
+
+                Rigidbody.isKinematic = true;
             }
         }
     }
@@ -49,7 +51,8 @@ public class HourseController : MonoBehaviour
     private void MoveHorse()
     {
 
-       
+        Vector3 forwardMovement = transform.forward * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + forwardMovement);
 
     }
 
