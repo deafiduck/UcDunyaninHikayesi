@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class MagicEffectScript : MonoBehaviour
 {
-    public GetKey getKey; 
-    public GameObject particleEffect;
+    public GetKey getKey;
+    public ParticleSystem particleEffect;
     public GameObject cylinder;
 
     void Start()
     {
-        // getKey bileþenini farklý bir nesnede ise, bunu ayarlamanýz gerekebilir
         if (getKey == null)
         {
-            getKey = FindObjectOfType<GetKey>(); // Bu, sahnedeki herhangi bir GetKey bileþenini bulur
+            getKey = FindObjectOfType<GetKey>();
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other) // OnCollision yerine OnTrigger kullan (Collider ayarlarýna baðlý)
     {
-        if (collision.gameObject.CompareTag("Character") && getKey != null && getKey.keyTaken)
+        if (other.CompareTag("Player") && getKey != null && getKey.keyTaken)
         {
-            particleEffect.SetActive(true);
+            Debug.Log("carptiiiii");
+            particleEffect.Play(); 
             cylinder.SetActive(false);
+           
         }
     }
 }
