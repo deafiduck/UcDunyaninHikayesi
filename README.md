@@ -12,7 +12,7 @@
 
 ## Proje Posteri
 
-Projenin temel konseptini ve tasarımını yansıtan posteri [buradan](POSTER.md) inceleyebilirsiniz.
+Projenin temel konseptini ve tasarımını yansıtan posteri [buradan](POSTER.pdf) inceleyebilirsiniz.
 
 ---
 
@@ -20,8 +20,8 @@ Projenin temel konseptini ve tasarımını yansıtan posteri [buradan](POSTER.md
 
 Projeye dair kapsamlı bilgiler, tasarım dokümanları ve teknik detaylar aşağıda yer almaktadır:
 
-- [Proje Tanıtım Dosyası](docs/ProjeTanitimDosyasi.pdf)
-- [Teknik Doküman](docs/TeknikDokuman.pdf)
+- [GameDesign Dokuman](docs/ProjeTanitimDosyasi.pdf)
+- [Proje Sunusu](docs/TeknikDokuman.pdf)
 
 ---
 
@@ -29,5 +29,3 @@ Projeye dair kapsamlı bilgiler, tasarım dokümanları ve teknik detaylar aşa�
 
 Oyun dünyasına ait konsept çizimler ve ekran görüntüleri, bu bölümde paylaşılmaktadır:
 
-- [Konsept Çizimler](images/KonseptCizimler/)
-- [Oyun İçi Görseller](images/OyunGorselleri/)
