@@ -1,4 +1,12 @@
 # UcDunyaninHikayesi
 
-![alt text](image.png)
+
+#POSTER
+
  
+ 
+#PROJE DOKUMANLARİ
+
+
+#GORSELLER
+![Erlik Han](image.png)
