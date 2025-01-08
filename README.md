@@ -5,7 +5,7 @@
 ![alt text](<DALL·E 2025-01-08 14.48.38 - A dramatic video game cover art for a story-based game inspired by Turkish mythology. The foreground features a heroic male character, Altay, in tradi-1.webp>)
 ## Proje Posteri
 
-Projenin temel konseptini ve tasarımını yansıtan posteri [buradan](The Legendary Journey of Altay.pdf) inceleyebilirsiniz.
+Projenin temel konseptini ve tasarımını yansıtan posteri [buradan](The.pdf) inceleyebilirsiniz.
 
 ---
 
@@ -14,7 +14,7 @@ Projenin temel konseptini ve tasarımını yansıtan posteri [buradan](The Legen
 ![alt text](<DALL·E 2025-01-08 14.51.42 - A dramatic video game cover art for a story-based game titled 'Üç Dünyanın Hikayesi' (The Story of Three Worlds). The scene shows a mystical and cinem-1.webp>)
 Projeye dair kapsamlı bilgiler, tasarım dokümanları ve teknik detaylar aşağıda yer almaktadır:
 
-- [GameDesign Dokuman](The.pdf)
+- [GameDesign Dokuman](gdd.pdf)
 
 - [Proje Sunusu](201180055_201180061_201180070_Sunum.pdf)
 
